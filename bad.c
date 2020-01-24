@@ -44,22 +44,31 @@ void do_cat(){
     }
 }
 
-void do_stat(){
+int do_stat(){
     struct stat buf;
     if (lstat("test1.txt", &buf) == -1) {
         perror("lstat");
     }
     printf("stat.st_mtime = %ld\n", buf.st_mtime);
+    if (buf.st_mtime == 0) {
+        return 1;
+    }
+    return 0;
 }
 
 int main(int argc, char *argv[]) {
-    printf("I expect a volume to be mounted on /mnt.");
+    printf("I expect a volume to be mounted on /mnt.\n");
     if (chdir("/mnt") == -1) {
         perror("chdir");
     };
     do_echo();
     do_cat();
     do_cat();
-    do_stat();
+    int result = do_stat();
+    if (result == 1) {
+        printf("Test failed.\n");
+        return 1;
+    }
+    printf("Test succeeded.\n");
     return 0;
 }
