@@ -1,0 +1,4 @@
+FROM ubuntu
+
+COPY test.sh /test.sh
+ENTRYPOINT [ "/bin/bash", "-c", "/test.sh" ]
