@@ -1,4 +1,5 @@
 FROM alpine
 
 COPY test.sh /test.sh
+RUN chmod +x /test.sh
 ENTRYPOINT [ "/bin/sh", "-c", "/test.sh" ]

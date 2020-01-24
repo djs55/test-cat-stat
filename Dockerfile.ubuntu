@@ -1,4 +1,5 @@
 FROM ubuntu
 
 COPY test.sh /test.sh
+RUN chmod +x /test.sh
 ENTRYPOINT [ "/bin/bash", "-c", "/test.sh" ]
