@@ -53,6 +53,10 @@ void do_stat(){
 }
 
 int main(int argc, char *argv[]) {
+    printf("I expect a volume to be mounted on /mnt.");
+    if (chdir("/mnt") == -1) {
+        perror("chdir");
+    };
     do_echo();
     do_cat();
     do_cat();
